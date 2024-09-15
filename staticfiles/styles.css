@@ -1,0 +1,65 @@
+/* Body background image */
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh; /* Full height of the viewport */
+  background-image: url('static/wood.jpg'); /* Background image */
+  background-size: cover; /* Cover the entire screen */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Do not repeat the background image */
+  background-attachment: fixed; /* Fixed background when scrolling */
+}
+
+/* Left and right border styling */
+.left-border, .right-border {
+  position: fixed;
+  top: 0;
+  height: 100vh; /* Full height of the screen */
+  width: 50px; /* Width of your border image */
+  background-size: cover; /* Ensure the image fills the div */
+  background-repeat: no-repeat; /* Don't repeat the border image */
+  background-attachment: fixed; /* Keep border fixed when scrolling */
+}
+
+/* Left border */
+.left-border {
+  left: 0; /* Attach to the left side */
+  background-image: url('static/wood boarder.jpg'); /* Your border image for the left side */
+}
+
+/* Right border */
+.right-border {
+  right: 0; /* Attach to the right side */
+  background-image: url('static/wood boarder.jpg'); /* Same or different image for right */
+}
+
+/* Centered logo */
+.logo {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Logo image styling */
+.logo img {
+  max-width: 300px; /* Set a maximum width for the logo */
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* Text below the logo */
+p {
+  font-size: 50px;
+  color: orange;
+  padding-left: 70px;
+  padding-right: 70px;
+}
+
+/* Positioning for text */
+.text-below-logo {
+  position: absolute;
+  top: 30%; /* Adjust this value to position the text below the logo */
+  left: 30%;
+  transform: translate(-20%, 0%); /* Center horizontally */
+  text-align: center;
+}
