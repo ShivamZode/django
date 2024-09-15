@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Logo and Layout</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playwrite+CU:wght@100..400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  <!-- Add icon library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+  <style>
+    /* Body background image */
+ 
+    body {
+      background: linear-gradient(135deg, #d6d6d6, #f1f1f1, #b8b8b8, #f1f1f1, #d6d6d6);
+      background-size: 400% 400%;
+      animation: metallic 0.1s ease infinite;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      /* background-image: url('static/wood.jpg'); */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    @keyframes metallic {
+        from{ background-position: 0%; }
+        to{ background-position: 100%; }
+        
+    }
+
+    /* Left and right border styling */
+    .left-border, .right-border {
+      position: fixed;
+      top: 0;
+      height: 100vh;
+      width: 5vh;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    .left-border {
+      left: 0;
+      background-image: url('static/wood boarder.jpg');
+    }
+
+    .right-border {
+      right: 0;
+      background-image: url('static/wood boarder.jpg');
+    }
+
+    .logo-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 5vh;
+    }
+
+    .logo {
+      transition: transform 1s ease;
+    }
+
+    .logo img {
+      width: 25vw;
+      max-width: 500px;
+      min-width: 50px;
+      height: auto;
+    }
+
+    p {
+      font-size: 3vw;
+      color: orange;
+      text-align: center;
+      padding-left: 70px;
+      padding-right: 70px;
+    }
+
+    .text-below-logo {
+      margin-top: 1px;
+    }
+    
+    .size1 {
+      font-family: "Playfair Display", serif;
+      font-optical-sizing: auto;
+      font-weight: <weight>;
+      font-style: normal;
+      font-size: 2vw;
+      color: orange;
+      text-align: center;
+      padding-left: 70px;
+      padding-right: 70px;
+    }
+    
+    .size2 {
+      font-family: 'Courier New', Courier, monospace;
+      font-optical-sizing: auto;
+      font-weight: <weight>;
+      font-style: normal;
+      font-size: 4vw;
+      color: orange;
+      text-align: center;
+      padding-left: 70px;
+      padding-right: 70px;
+    }
+
+    .logo:hover {
+      transform: scale(1.2);
+    }
+
+    .btn-gradient {
+      background: linear-gradient(45deg, #ffa500, #ffd700);
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .btn-gradient:hover {
+      background: linear-gradient(90deg, #f06595, #ff6b6b, #ffd700);
+    }
+
+    /* Hidden image that will slide in */
+    .slide-image {
+      position: absolute;
+      top: 50%;
+      left: -100%; /* Start off-screen to the left */
+      width: 200px; /* Adjust width */
+      height: auto;
+      opacity: 0; /* Invisible initially */
+      transition: all 1s ease; /* Smooth transition */
+    }
+
+    /* Class to move the image from left to right */
+    .show-image {
+      left: 50%; /* Position it at the center horizontally */
+      opacity: 1; /* Make the image visible */
+      transform: translateX(-50%); /* Center the image */
+    }
+    a {
+        text-decoration: none; /* Removes the underline */
+        color: inherit; /* Keeps the link's color or sets to any desired color */
+    }
+    
+  </style>
+</head>
+<body>
+  <!-- Left and right borders -->
+  <div class="left-border"></div>
+  <div class="right-border"></div>
+  
+  <!-- Flexbox container to center the logo and text -->
+  <div class="logo-container">
+    <div class="logo">
+      <img src="static/logo2.png" alt="Logo">
+    </div>
+    <div class="text-below-logo">
+      <h2 class="size2">Seekhlaw</h2>
+      <p>lets learn constitution in simple manner!!</p>
+      <h1 class="size1">An interactive gamified learning app platform to learn indian constitution in simple manner</h1>
+      <h1 class="size1">which allows user to play the role of student, lawyers, judge, etc. in story format</h1>
+      
+      <div style="display: flex; justify-content: center; align-items: center; height: 10vh; gap: 20px;">
+        <a class="btn-gradient" href="contact">Contact Us</a>
+        <button class="btn-gradient" onclick="loadVideo('https://www.youtube.com/embed/wYabWWW7mX0?si=r9xQ1ofvdg5zCNhV')">Play Video</button>
+        <button id = "btn3" class="btn-gradient" onclick = "changetext()" href = "")">Demo</button>
+      </div>
+
+      <!-- Div to hold the embedded YouTube video -->
+      <div id="videoContainer" style="display: none; justify-content: center; margin-top: 20px; margin-bottom: 40px;">
+        <iframe id="videoPlayer" width="1120" height="630" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      </div>
+
+      <script>
+        function changetext() {
+          let button = document.getElementById("btn3");
+          let newText = "Coming Soon!!!!";
+          let currentIndex = 0;
+
+          // Clear the button text first
+          button.innerHTML = "";
+
+          // Typing effect using setInterval
+          let typingInterval = setInterval(() => {
+              if (currentIndex < newText.length) {
+                  button.innerHTML += newText.charAt(currentIndex);
+                  currentIndex++;
+              } else {
+                  clearInterval(typingInterval); // Stop the interval when text is fully typed
+              }
+          }, 100);
+        }
+        function loadVideo(videoUrl) {
+          // Show the video container
+          document.getElementById('videoContainer').style.display = 'flex';
+          // Set the iframe source to the YouTube video
+          document.getElementById('videoPlayer').src = videoUrl;
+          videoContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+      </script>
+
+    </div>
+  </div>
+
+  <!-- Image that will slide from left to right -->
+  <img src="static/white-notebook-paper-with-all-edges-ripped-png.webp" alt="Sliding Image" class="slide-image" id="slidingImage">
+
+  <script>
+    function showImage() {
+      document.getElementById('btn3') = "btn3" ;
+      const image = document.getElementById('slidingImage');
+      image.classList.add('show-image'); // Add the class to trigger the slide-in effect
+    }
+  </script>
+</body>
+</html>

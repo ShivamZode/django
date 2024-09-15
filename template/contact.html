@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact List with Hover Pop-up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        .container {
+            text-align: center;
+            position: relative; /* For absolute positioning of elements inside */
+        }
+
+        /* Styling for SEEKHLAW text */
+        .seekhlaw {
+            font-size: 48px;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            letter-spacing: 10px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin: 0;
+            transition: transform 1s ease, opacity 1s ease;
+            z-index: 1; /* Ensure it's above the image */
+        }
+
+        .seekhlaw.hidden {
+            transform: translate(-50%, calc(-50% + 100px)); /* Move below the image */
+            opacity: 0;
+        }
+
+        .seekhlaw span {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: appear 0.5s forwards;
+        }
+
+        /* Keyframes for smooth letter appearance */
+        @keyframes appear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Styling for the image */
+        .profile-image {
+            width: 900px;
+            height: 600px;
+            object-fit: cover;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 1s ease, transform 1s ease;
+            margin-bottom: 20px;
+            z-index: 0; /* Ensure it's below SEEKHLAW */
+        }
+
+        .profile-image.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Styling for contact list */
+        .contact-list {
+            display: flex;
+            justify-content: space-around;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            list-style: none;
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .contact-list.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .contact-list li {
+            padding: 15px;
+            border-right: 1px solid #ddd;
+            flex: 1;
+            position: relative;
+            margin-bottom: 100px; /* Space below for the pop-up image */
+        }
+
+        .contact-list li:last-child {
+            border-right: none;
+        }
+
+        .contact-list h3, .contact-list p {
+            margin: 0;
+        }
+
+        /* Pop-up images styling */
+        .popup-image {
+            width: 120px;
+            height: 130px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -120px;
+            display: none;
+            z-index: 10;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Show the image on hover */
+        .contact-list li:hover .popup-image {
+            display: block;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1200px) {
+            .profile-image {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        @media (max-width: 800px) {
+            .contact-list {
+                flex-direction: column;
+            }
+
+            .contact-list li {
+                border-right: none;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .contact-list li:last-child {
+                border-bottom: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="mainContainer">
+        <!-- SEEKHLAW text with smooth appearance -->
+        <div class="seekhlaw" id="seekhlawText">
+            <span>S</span>
+            <span>E</span>
+            <span>E</span>
+            <span>K</span>
+            <span>H</span>
+            <span>L</span>
+            <span>A</span>
+            <span>W</span>
+        </div>
+
+        <!-- Centered Image -->
+        <img src="static/hgp.jpeg" alt="Profile Image" class="profile-image">
+
+        <!-- Contact List -->
+        <ul class="contact-list">
+            <li id="contact1">
+                <h3>Sneha Jadhav</h3>
+                <p>Phone: +91 9420802142</p>
+                <img src="static/sneha.jpeg" alt="Image 1" class="popup-image">
+            </li>
+            <li id="contact2">
+                <h3>Aiman Mulla</h3>
+                <p>Phone: +91 9356462809</p>
+                <img src="static/aiman.jpeg" alt="Image 2" class="popup-image">
+            </li>
+            <li id="contact3">
+                <h3>Deepratna Pawar</h3>
+                <p>Phone: +91 7219054176</p>
+                <img src="static/deep.jpeg" alt="Image 3" class="popup-image">
+            </li>
+            <li id="contact4">
+                <h3>Yash Gardi</h3>
+                <p>Phone: +91 8010866301</p>
+                <img src="static/yash.jpeg" alt="Image 4" class="popup-image">
+            </li>
+            <li id="contact5">
+                <h3>Shivam Zode</h3>
+                <p>Phone: +91 7823089368</p>
+                <img src="static/shivam.jpeg" alt="Image 5" class="popup-image">
+            </li>
+            <li id="contact6">
+                <h3>Niranjan Patil</h3>
+                <p>Phone: +91 9028217319</p>
+                <img src="static/niranjan.jpeg" alt="Image 6" class="popup-image">
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const seekhlawText = document.getElementById('seekhlawText');
+            const profileImage = document.querySelector('.profile-image');
+            const contactList = document.querySelector('.contact-list');
+            const listItems = document.querySelectorAll('.contact-list li');
+
+            // 1. Animate SEEKHLAW text
+            const seekhlawSpans = seekhlawText.querySelectorAll('span');
+            seekhlawSpans.forEach((span, index) => {
+                span.style.animationDelay = `${index * 0.2}s`;
+            });
+
+            // Calculate total animation time for SEEKHLAW
+            const totalAnimationTime = seekhlawSpans.length * 200;
+
+            // Function to trigger contact animation
+            const triggerContactAnimation = () => {
+                contactList.classList.add('visible');
+                listItems.forEach((li, index) => {
+                    setTimeout(() => {
+                        li.style.opacity = 1;
+                        li.style.transform = 'translateY(0)';
+                        const phone = li.querySelector('p');
+                        phone.style.visibility = 'visible'; // Show phone number after animation
+                    }, index * 500); // Delay for each contact
+                });
+            };
+
+            // 2. Handle animation sequence
+            setTimeout(() => {
+                profileImage.classList.add('visible');
+                seekhlawText.classList.add('hidden');
+
+                // 3. Scroll down and trigger contact animation after image and SEEKHLAW animation
+                setTimeout(() => {
+                    window.scrollTo({
+                        top: document.body.scrollHeight,
+                        behavior: 'smooth'
+                    });
+
+                    // Check if already at the bottom
+                    const checkScroll = () => {
+                        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                            triggerContactAnimation();
+                            window.removeEventListener('scroll', checkScroll);
+                        }
+                    };
+
+                    // Add scroll event listener
+                    window.addEventListener('scroll', checkScroll);
+
+                    // Initial check if already at the bottom
+                    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                        triggerContactAnimation();
+                        window.removeEventListener('scroll', checkScroll);
+                    }
+                }, 1000); // Adjust timing to ensure smooth transition
+            }, totalAnimationTime + 500); // Delay for image appearance after SEEKHLAW
+        };
+    </script>
+</body>
+</html>
