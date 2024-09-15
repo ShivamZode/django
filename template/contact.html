@@ -15,7 +15,7 @@
             justify-content: center;
             min-height: 100vh;
             background-color: #f4f4f4;
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            overflow-x: hidden; /* to Prevent horizontal scroll */
         }
 
         .container {
@@ -23,7 +23,7 @@
             position: relative; /* For absolute positioning of elements inside */
         }
 
-        /* Styling for SEEKHLAW text */
+        /* for SEEKHLAW text */
         .seekhlaw {
             font-size: 48px;
             font-family: 'Courier New', Courier, monospace;
@@ -35,7 +35,7 @@
             transform: translate(-50%, -50%);
             margin: 0;
             transition: transform 1s ease, opacity 1s ease;
-            z-index: 1; /* Ensure it's above the image */
+            z-index: 1; /* to Ensure it's above the image */
         }
 
         .seekhlaw.hidden {
@@ -57,7 +57,7 @@
             }
         }
 
-        /* Styling for the image */
+        /* for the image */
         .profile-image {
             width: 900px;
             height: 600px;
@@ -66,7 +66,7 @@
             transform: scale(0.95);
             transition: opacity 1s ease, transform 1s ease;
             margin-bottom: 20px;
-            z-index: 0; /* Ensure it's below SEEKHLAW */
+            z-index: 0; /* to Ensure it's below SEEKHLAW */
         }
 
         .profile-image.visible {
@@ -125,7 +125,7 @@
             transition: opacity 0.3s ease;
         }
 
-        /* Show the image on hover */
+        /* Shows the image on hover */
         .contact-list li:hover .popup-image {
             display: block;
         }
@@ -168,10 +168,10 @@
             <span>W</span>
         </div>
 
-        <!-- Centered Image -->
+       
         <img src="static/hgp.jpeg" alt="Profile Image" class="profile-image">
 
-        <!-- Contact List -->
+       
         <ul class="contact-list">
             <li id="contact1">
                 <h3>Sneha Jadhav</h3>
@@ -213,13 +213,13 @@
             const contactList = document.querySelector('.contact-list');
             const listItems = document.querySelectorAll('.contact-list li');
 
-            // 1. Animate SEEKHLAW text
+            //  Animate SEEKHLAW text
             const seekhlawSpans = seekhlawText.querySelectorAll('span');
             seekhlawSpans.forEach((span, index) => {
-                span.style.animationDelay = `${index * 0.2}s`;
+                span.style.animationDelay = `${index * 0.3}s`;
             });
 
-            // Calculate total animation time for SEEKHLAW
+            //  total animation time for SEEKHLAW
             const totalAnimationTime = seekhlawSpans.length * 200;
 
             // Function to trigger contact animation
@@ -235,19 +235,19 @@
                 });
             };
 
-            // 2. Handle animation sequence
+            // Handles animation sequence
             setTimeout(() => {
                 profileImage.classList.add('visible');
                 seekhlawText.classList.add('hidden');
 
-                // 3. Scroll down and trigger contact animation after image and SEEKHLAW animation
+                //  Scroll down and trigger contact animation after image and SEEKHLAW animation
                 setTimeout(() => {
                     window.scrollTo({
                         top: document.body.scrollHeight,
                         behavior: 'smooth'
                     });
 
-                    // Check if already at the bottom
+                    // Checks if already at the bottom
                     const checkScroll = () => {
                         if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
                             triggerContactAnimation();
